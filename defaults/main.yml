@@ -1,0 +1,10 @@
+---
+aptkey_url: ""
+aptkey_name: ""
+aptkey_path: /etc/apt/keyrings/
+
+# aptkey_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+# aptkey_name: nodesource.gpg
+# aptkey_path: /usr/share/keyrings/
+
+aptkey_uninstall: false

@@ -1,0 +1,8 @@
+---
+- name: Install aptkey
+  ansible.builtin.include_tasks: install.yml
+  when: aptkey_uninstall == false
+
+- name: Uninstall aptkey
+  ansible.builtin.include_tasks: uninstall.yml
+  when: aptkey_uninstall == true
