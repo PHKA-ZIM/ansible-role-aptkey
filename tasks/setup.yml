@@ -1,0 +1,21 @@
+---
+- name: Download .asc key and register as variable
+  ansible.builtin.uri:
+    url: "{{ aptkey_url }}"
+    return_content: yes
+  register: response
+  until: "'PGP PUBLIC KEY' in response.content"
+  retries: 10
+  delay: 5
+
+- name: Convert file for backward compatibility
+  ansible.builtin.command:
+    cmd: gpg --dearmor
+    stdin: "{{ response.content }}"
+  register: output
+
+- name: Copy key
+  become: true
+  ansible.builtin.copy:
+    content: "{{ output.stdout }}"
+    dest: "{{ aptkey_path }}/{{ aptkey_name }}"

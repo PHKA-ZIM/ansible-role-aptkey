@@ -1,0 +1,6 @@
+---
+- name: Remove key file
+  become: true
+  ansible.builtin.file:
+    path: "{{ aptkey_path }}/{{ aptkey_name }}"
+    state: absent
